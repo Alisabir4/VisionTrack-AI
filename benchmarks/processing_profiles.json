@@ -1,0 +1,52 @@
+{
+  "benchmark": "full sequential pipeline on repeated sample image frames",
+  "source_fps": 5,
+  "frames": 60,
+  "results": [
+    {
+      "profile": "Fast",
+      "sample_interval": 5,
+      "inference_image_size": 480,
+      "sampled_frames": 12,
+      "detections": 36,
+      "unique_ids": 3,
+      "wall_seconds": 8.767,
+      "source_frames_per_second": 6.998,
+      "process_rss_peak_mb": 413.09,
+      "host_cpu_percent_before_after": [
+        62.1,
+        86.7
+      ]
+    },
+    {
+      "profile": "Balanced",
+      "sample_interval": 3,
+      "inference_image_size": 640,
+      "sampled_frames": 20,
+      "detections": 80,
+      "unique_ids": 4,
+      "wall_seconds": 7.502,
+      "source_frames_per_second": 8.233,
+      "process_rss_peak_mb": 441.62,
+      "host_cpu_percent_before_after": [
+        74.1,
+        92.9
+      ]
+    },
+    {
+      "profile": "Accurate",
+      "sample_interval": 2,
+      "inference_image_size": 800,
+      "sampled_frames": 30,
+      "detections": 120,
+      "unique_ids": 4,
+      "wall_seconds": 13.457,
+      "source_frames_per_second": 4.527,
+      "process_rss_peak_mb": 433.27,
+      "host_cpu_percent_before_after": [
+        67.9,
+        96.9
+      ]
+    }
+  ]
+}

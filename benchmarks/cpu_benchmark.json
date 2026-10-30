@@ -1,0 +1,85 @@
+{
+  "timestamp_utc": "2026-10-30T10:01:21.176788+00:00",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.11.9",
+  "processor": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel",
+  "logical_cpu_count": 4,
+  "torch_version": "2.14.0+cpu",
+  "cuda_available": false,
+  "device": "cpu",
+  "model": "C:\\Users\\Ali Sabir\\Documents\\Codex\\2026-10-30\\files-pasted-by-the-user-project\\outputs\\VisionTrack-AI\\models\\yolov8n.pt",
+  "image": "C:\\Users\\Ali Sabir\\Documents\\Codex\\2026-10-30\\files-pasted-by-the-user-project\\outputs\\VisionTrack-AI\\samples\\bus.jpg",
+  "image_resolution": {
+    "width": 810,
+    "height": 1080
+  },
+  "confidence_threshold": 0.25,
+  "inference_image_size": 640,
+  "warmup_seconds": 9.7404,
+  "measured_runs": 5,
+  "run_seconds": [
+    0.5631,
+    0.419,
+    0.4709,
+    0.414,
+    0.4572
+  ],
+  "mean_inference_seconds": 0.4648,
+  "median_inference_seconds": 0.4572,
+  "steady_state_fps": 2.151,
+  "cpu_percent_sample_before_after": [
+    96.2,
+    100.0
+  ],
+  "process_rss_before_mb": 212.03,
+  "process_rss_peak_mb": 372.52,
+  "process_rss_increase_mb": 160.48,
+  "detection_count": 4,
+  "detections": [
+    {
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8657,
+      "xyxy": [
+        48.55,
+        398.55,
+        245.35,
+        902.7
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8528,
+      "xyxy": [
+        669.47,
+        392.19,
+        809.72,
+        877.04
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8252,
+      "xyxy": [
+        221.52,
+        405.8,
+        344.97,
+        857.54
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "person",
+      "confidence": 0.2611,
+      "xyxy": [
+        0.0,
+        550.53,
+        63.01,
+        873.44
+      ]
+    }
+  ],
+  "annotated_image": "C:\\Users\\Ali Sabir\\Documents\\Codex\\2026-10-30\\files-pasted-by-the-user-project\\outputs\\VisionTrack-AI\\benchmarks\\cpu_inference_result.jpg"
+}
