@@ -5,7 +5,7 @@ import streamlit as st
 from config import PROFILES,UPLOAD_DIR
 from core.video_manager import save_upload,inspect_video,VideoValidationError
 from utils.cache_manager import analysis_cache_key
-from utils.media_server import get_media_server
+from utils.streamlit_media import register_media_file
 from dashboard.paired_player import paired_video_player
 from .common import get_db,get_jobs
 
@@ -40,9 +40,24 @@ def _show_pair(analysis):
     else:
         st.warning("The output timeline metadata differs from the source. Shared controls are provided, but synchronization is not verified for this file.")
     try:
-        server=get_media_server()
-        timeline_url=server.url(timeline_path) if timeline_path.is_file() else None
-        paired_video_player(server.url(analysis["video_path"]),server.url(analysis["heatmap_video_path"]),timeline_url,heat.fps)
+        video_mimetypes={".mp4":"video/mp4", ".webm":"video/webm",
+                         ".mov":"video/quicktime", ".avi":"video/x-msvideo"}
+        original_path=Path(analysis["video_path"])
+        original_mimetype=video_mimetypes.get(original_path.suffix.lower())
+        if not original_mimetype:
+            raise ValueError(f"Unsupported source video container: {original_path.suffix}")
+        original_url=register_media_file(original_path,mimetype=original_mimetype,
+                                         coordinates=f"visiontrack.{analysis['id']}.paired.original")
+        heatmap_path=Path(analysis["heatmap_video_path"])
+        heatmap_mimetype=video_mimetypes.get(heatmap_path.suffix.lower())
+        if not heatmap_mimetype:
+            raise ValueError(f"Unsupported heatmap video container: {heatmap_path.suffix}")
+        heatmap_url=register_media_file(heatmap_path,mimetype=heatmap_mimetype,
+                                        coordinates=f"visiontrack.{analysis['id']}.paired.heatmap")
+        timeline_url=(register_media_file(timeline_path,mimetype="application/json",
+                                          coordinates=f"visiontrack.{analysis['id']}.paired.timeline")
+                      if timeline_path.is_file() else None)
+        paired_video_player(original_url,heatmap_url,timeline_url,heat.fps)
     except Exception as e: st.error(f"Could not prepare local playback streams: {e}")
 
 def render():
